@@ -1,0 +1,127 @@
+**Dependency Injection (DI)** is a design pattern used in Angular to achieve **Inversion of Control (IoC)**. It allows a class to receive its dependencies from an external source rather than creating them itself, making the code more modular, reusable, and testable.
+
+In Angular, the DI system is built-in and widely used for providing services or other dependencies to components, directives, pipes, or other services.
+
+---
+
+### Key Concepts
+
+1. **Injector**: The object responsible for creating and managing dependencies.
+2. **Provider**: Describes how to create or supply an instance of a dependency.
+3. **Dependency**: The object or service that a class requires to perform its function.
+
+---
+
+### Simple Example of Dependency Injection in Angular
+
+Let’s create an example where a component uses a service to fetch and display data.
+
+#### Step 1: Create a Service
+
+Use Angular CLI to generate a service:
+
+```bash
+ng generate service data
+```
+
+This creates two files:
+- `data.service.ts`
+- `data.service.spec.ts`
+
+#### Service Code (`data.service.ts`):
+
+```typescript
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root' // Makes this service available application-wide
+})
+export class DataService {
+  getData(): string {
+    return 'Hello from the Data Service!';
+  }
+}
+```
+
+- **Explanation**: 
+  - The `@Injectable` decorator marks this class as a service that can be injected.
+  - The `providedIn: 'root'` ensures the service is a singleton and available throughout the application.
+
+---
+
+#### Step 2: Inject the Service into a Component
+
+Use Angular CLI to generate a component:
+
+```bash
+ng generate component di-example
+```
+
+#### Component Code (`di-example.component.ts`):
+
+```typescript
+import { Component } from '@angular/core';
+import { DataService } from '../data.service'; // Import the service
+
+@Component({
+  selector: 'app-di-example',
+  templateUrl: './di-example.component.html'
+})
+export class DiExampleComponent {
+  message: string;
+
+  constructor(private dataService: DataService) { // Inject the service
+    this.message = this.dataService.getData();
+  }
+}
+```
+
+- **Explanation**:
+  - The service `DataService` is injected into the component via the constructor.
+  - The `getData()` method of the service is called to retrieve a message.
+
+---
+
+#### Step 3: Update the Template
+
+In `di-example.component.html`:
+
+```html
+<p>{{ message }}</p>
+```
+
+---
+
+#### Step 4: Use the Component in the Application
+
+In `app.component.html`, include the `di-example` component:
+
+```html
+<app-di-example></app-di-example>
+```
+
+---
+
+### How Dependency Injection Works Here
+
+1. **Service Registration**: The `DataService` is registered with Angular's DI system (via `@Injectable` with `providedIn: 'root'`).
+2. **Service Injection**: The DI system creates an instance of `DataService` and injects it into the `DiExampleComponent` when it is instantiated.
+3. **Access Dependency**: The component accesses the functionality provided by the service.
+
+---
+
+### Advantages of Dependency Injection
+
+1. **Modularity**: Components and services are loosely coupled, making the code easier to manage and maintain.
+2. **Reusability**: Services can be reused across different parts of the application.
+3. **Testability**: Mock services can be injected for testing, isolating components from external dependencies.
+
+---
+
+### Summary
+
+Dependency Injection in Angular is a powerful way to manage dependencies. It promotes clean, modular, and reusable code by:
+- Registering dependencies (like services) in Angular's DI system.
+- Injecting them wherever needed using constructors or providers. 
+
+This makes Angular applications more maintainable and testable.

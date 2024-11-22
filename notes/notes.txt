@@ -1,0 +1,2 @@
+Single-line Comment:ctrl+/
+Multi-line Comment:Shift + Alt + A
