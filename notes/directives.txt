@@ -1,0 +1,68 @@
+In Angular, **directives** are special instructions in the DOM (Document Object Model) that Angular uses to add behavior to elements and control how they are displayed. Directives allow you to manipulate the DOM, add styles, change classes, and create reusable components.
+
+### Types of Directives in Angular
+
+Angular has three main types of directives:
+
+1. **Component Directives**:
+   - **Definition**: These are the most common type of directive and are used to create components.
+   - **Example**: Every component (like `AppComponent`) is essentially a directive with a template.
+   - **Usage**: Defined using the `@Component` decorator, which allows for HTML, CSS, and TypeScript code to be combined into a reusable block. It’s often represented by a custom HTML tag (e.g., `<app-root>`).
+
+2. **Structural Directives**:
+   - **Definition**: These directives change the DOM layout by adding or removing elements based on certain conditions.
+   - **Examples**: `*ngIf`, `*ngFor`, `*ngSwitch`
+   - **Usage**:
+     - `*ngIf`: Conditionally includes or excludes an element.
+       ```html
+       <p *ngIf="isVisible">This text is conditionally visible.</p>
+       ```
+     - `*ngFor`: Repeats an element for each item in a collection.
+       ```html
+       <li *ngFor="let item of items">{{ item }}</li>
+       ```
+   - **How it works**: Structural directives are prefixed with `*` and modify the structure of the DOM, either by adding or removing elements dynamically.
+
+*ngIf: Displays an element only if a specific condition is true.
+*ngFor: Repeats an element for each item in a collection.
+*ngSwitch: Displays one element from a set of possible elements, based on a condition.
+
+
+Summary
+Directive	Purpose	Example
+*ngIf	Conditionally displays an element based on a boolean	<p *ngIf="isLoggedIn">Hello, User</p>
+*ngFor	Repeats an element for each item in a list	<li *ngFor="let item of items">{{ item }}</li>
+*ngSwitch	Displays one element from multiple options	<p *ngSwitchCase="'list'">List View</p>
+Structural directives let Angular dynamically add or remove elements from the DOM, making applications more interactive and responsive to data and user actions.
+
+
+
+3. **Attribute Directives**:
+   - **Definition**: These directives change the appearance or behavior of an existing element.
+   - **Examples**: `ngClass`, `ngStyle`, and custom attribute directives.
+   - **Usage**:
+     - `ngClass`: Adds/removes CSS classes dynamically.
+       ```html
+       <div [ngClass]="{ 'highlight': isHighlighted }">Dynamic Class</div>
+       ```
+     - `ngStyle`: Applies inline styles dynamically.
+       ```html
+       <p [ngStyle]="{ 'color': textColor }">Styled Text</p>
+       ```
+   - **How it works**: Attribute directives work by changing the properties or styles of an element without adding or removing the element itself.
+
+### Differences Between Types of Directives
+
+| Type                  | Purpose                                            | Examples                | Usage                                                   |
+|-----------------------|----------------------------------------------------|-------------------------|---------------------------------------------------------|
+| Component Directives  | Define reusable UI blocks with templates           | `<app-root>`, `<app-item>` | Used to create components with the `@Component` decorator |
+| Structural Directives | Change the DOM structure by adding/removing elements | `*ngIf`, `*ngFor`, `*ngSwitch` | Prefixed with `*` and modify the DOM layout             |
+| Attribute Directives  | Modify the appearance or behavior of an element    | `[ngClass]`, `[ngStyle]`  | Applied as attributes to adjust properties or styling   |
+
+### Summary
+
+- **Component Directives** create self-contained UI components.
+- **Structural Directives** add or remove elements from the DOM.
+- **Attribute Directives** modify an element’s appearance or behavior without changing the DOM structure.
+
+Each type of directive serves a different role, helping Angular applications be dynamic, reusable, and responsive to user actions and data.

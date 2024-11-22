@@ -1,0 +1,48 @@
+In Angular, **data binding** is a way to connect the data in a component with the data displayed in the view (HTML template). Angular supports four main types of data binding, each serving a specific purpose. 
+
+### Types of Data Binding in Angular
+
+1. **Interpolation**: 
+   - **Usage**: To display data from the component in the view.
+   - **Syntax**: `{{ expression }}`
+   - **Example**: `<p>{{ title }}</p>`
+   - **How it works**: It binds data from the component to the template, displaying the value in curly braces. Interpolation is one-way, so changes in the component reflect in the view but not vice versa.
+
+2. **Property Binding**:
+   - **Usage**: To set properties of HTML elements or Angular directives dynamically.
+   - **Syntax**: `[property]="expression"`
+   - **Example**: `<img [src]="imageUrl">`
+   - **How it works**: This binds data from the component to the DOM properties of HTML elements. Like interpolation, it's also one-way, allowing only data flow from the component to the view.
+
+3. **Event Binding**:
+   - **Usage**: To respond to user actions such as clicks, key presses, etc.
+   - **Syntax**: `(event)="expression"`
+   - **Example**: `<button (click)="onClick()">Click Me</button>`
+   - **How it works**: This binds DOM events (like click, keyup) to a method in the component, allowing the component to react to user actions.
+
+4. **Two-Way Binding**:
+   - **Usage**: To keep the component and the view in sync, especially useful in form fields.
+   - **Syntax**: `[(ngModel)]="property"`
+   - **Example**: `<input [(ngModel)]="name">`
+   - **How it works**: This combines property binding and event binding. Changes in the component data update the view, and user input in the view updates the component data. For this, you must import `FormsModule` in your app module.
+
+### Differences Between Types of Data Binding
+
+| Type             | Syntax                 | Direction of Data Flow    | Use Case                                     |
+|------------------|------------------------|---------------------------|----------------------------------------------|
+| Interpolation    | `{{ expression }}`     | Component → View          | Displaying text and simple values in HTML    |
+| Property Binding | `[property]="expression"` | Component → View      | Setting properties like `src`, `href`, `disabled` |
+| Event Binding    | `(event)="expression"` | View → Component          | Handling user interactions like clicks       |
+| Two-Way Binding  | `[(ngModel)]="property"` | Component ↔ View       | Forms and fields where the data flows both ways |
+
+### Summary
+
+- **One-Way Binding** (Interpolation, Property Binding): Data flows from the component to the view.
+- **Event Binding**: Data flows from the view to the component.
+- **Two-Way Binding**: Data flows in both directions, keeping the component and view in sync automatically.
+
+These data binding types give you flexibility to manage data flow effectively between your component logic and user interface in Angular applications.
+
+
+---------------------------------------------------------------------------------------------------------------
+
